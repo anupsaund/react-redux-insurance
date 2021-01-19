@@ -1,14 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';  
 
- class Policy extends React.Component {    
+class Policy extends React.Component {    
     render() {
         let premium = Math.floor(this.props.count * 1.1 * 1000);
-        premium  = (premium === 0 ? 1000 : premium);
+        //premium  = (premium === 0) ? 1000 : premium;
+
+        if(premium === 0){
+            premium = 1000 - parseInt(this.props.excess);
+        }else{
+            premium = premium - parseInt(this.props.excess);
+        }
+
         return (
             <div>
-                <h2>Policy Premium based on {this.props.count} claims in the past year.</h2>
-                <p>${premium}</p>
+                <h2>Policy Premium based on {this.props.count} claims in the past year, and Excess of ${this.props.excess}</h2>
+                <h3>${premium}</h3>
             </div>
         )
     }
@@ -16,7 +23,8 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
     return {
-        count: state.insurance.count
+        count: state.insurance.count,
+        excess: state.insurance.excess.excess
     };
 }
 

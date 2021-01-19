@@ -15,13 +15,17 @@ class ProductList extends React.Component {
     }
 
     if (loading) {
-      return <div>Loading...</div>;
+      return <div>Loading products from the api, please wait...</div>;
     }
-
+    
     return (
       <ul>
        {products.map(product =>
-      <li key={product.id}>{product.title}</li>
+        <li key={product.id}>
+         <img alt="" src={product.image} style={{width:"50px"}}/>
+         <span style={{color:"red"}}> ${product.price} </span>
+         {product.title} 
+        </li>
       )}
       </ul>
     );
@@ -29,9 +33,10 @@ class ProductList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    products: state.productReducer.items,
-    loading: state.productReducer.loading,
-    error: state.productReducer.error
-  });
+  products: state.productReducer.items,
+  loading: state.productReducer.loading,
+  error: state.productReducer.error
+});
+
 
 export default connect(mapStateToProps)(ProductList);

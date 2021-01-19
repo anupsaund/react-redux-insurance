@@ -12,11 +12,13 @@ import Policy from './components/Policy';
 import ProductList from './components/ProductList';
 //import Claims from './components/Claims'
 import Claims from './components/ClaimsRedux';
+import Excess from './components/Excess';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
+    <Excess />
     <Claims/>
     <Policy />
     <ProductList />

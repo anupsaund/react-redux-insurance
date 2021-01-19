@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';  
-import { increment, decrement } from '../actions';
+import { increment, decrement, reset } from '../actions';
 
 class Claims extends React.Component {
-  
+
     increment = () => {
         this.props.increment();
     };
@@ -12,6 +12,10 @@ class Claims extends React.Component {
         this.props.decrement();
     };
   
+    reset = () =>{
+      this.props.reset();
+    }
+    
     render() {
       return (
         <div >
@@ -20,6 +24,8 @@ class Claims extends React.Component {
             <button onClick={this.decrement}>-</button>
             <span>{this.props.count}</span>
             <button onClick={this.increment}>+</button>
+            <br />
+            <button onClick={this.reset}>RESET</button>
           </div>
         </div>
       );
@@ -34,7 +40,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     increment,
-    decrement
+    decrement,
+    reset
 };
   
 export default connect(mapStateToProps, mapDispatchToProps)(Claims);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';  
 import { set_excess } from '../actions/';
-
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 
 class Excess extends Component {
     
@@ -30,12 +31,16 @@ class Excess extends Component {
 
     render() {
         return (
-            <div>
-                <h2>How much excess would you be prepared to pay in the event of a claim?</h2>
-                <input type="text" value={this.state.newexcess}
-                onChange={(value) => this.onChange(value)}
-                ></input>
-            </div>
+            <Card style={{ width: '18rem', border: '1px solid red' }}>
+                <Card.Img variant="top" width="100px" src="https://i.ytimg.com/vi/2EfHtzauHcM/maxresdefault.jpg" />
+                <Card.Body>
+                    <Card.Title>How much excess would you be prepared to pay in the event of a claim?</Card.Title>
+                    <Card.Text>
+                    <Form.Control as="input" value={this.state.newexcess}
+                onChange={(value) => this.onChange(value)} label="$ CAD" />
+                    </Card.Text>
+                </Card.Body>
+            </Card>    
         )
     }
 }
